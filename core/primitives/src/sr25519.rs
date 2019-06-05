@@ -84,7 +84,7 @@ impl AsMut<[u8]> for Public {
 
 impl From<[u8; 32]> for Public {
 	fn from(x: [u8; 32]) -> Public {
-		Public(address)
+		Public(x)
 	}
 }
 
