@@ -21,6 +21,10 @@
 //! for this to work.
 // end::description[]
 
+use core::{
+	array::TryFromSliceError,
+	convert::TryFrom,
+};
 #[cfg(feature = "std")]
 use rand::rngs::OsRng;
 #[cfg(feature = "std")]
@@ -75,6 +79,21 @@ impl AsRef<[u8]> for Public {
 impl AsMut<[u8]> for Public {
 	fn as_mut(&mut self) -> &mut [u8] {
 		&mut self.0[..]
+	}
+}
+
+impl From<[u8; 32]> for Public {
+	fn from(x: [u8; 32]) -> Public {
+		Public(address)
+	}
+}
+
+impl<'a> TryFrom<&'a [u8]> for Public {
+	type Error = TryFromSliceError;
+
+	fn try_from(bytes: &'a [u8]) -> Result<Public, TryFromSliceError> {
+		let arr = <[u8; 32]>::try_from(bytes)?;
+		Ok(Public(arr))
 	}
 }
 
