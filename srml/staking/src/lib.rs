@@ -382,7 +382,7 @@ impl<
 	}
 }
 
-/// The amount of exposure (to slashing) than an individual nominator has.
+/// The amount of exposure (to slashing) that an individual nominator has.
 #[derive(PartialEq, Eq, PartialOrd, Ord, Clone, Encode, Decode)]
 #[cfg_attr(feature = "std", derive(Debug))]
 pub struct IndividualExposure<AccountId, Balance: HasCompact> {
